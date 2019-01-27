@@ -6,10 +6,20 @@ let ReactDOM = require('react-dom');
 let TodoComponent = createReactClass({
     getInitialState:function(){
         return{
-            todos:['wash up','eat the food','take a nap']
+            todos:['wash up','eat the food','take a nap'],
+            age:10
         }
     },//Returns object
     render:function(){
+        let self = this;
+        let ager = function(){
+            self.setState({
+                age: 23
+            })
+        };
+
+       
+
         //Iterating through the array 
         let todoList = this.state.todos;
         todoList = todoList.map(function(item,index){
@@ -27,6 +37,7 @@ let TodoComponent = createReactClass({
                 <p><strong>Place:{this.props.person.city}</strong></p>
                 <h1>STATES</h1>
                 <div id="todo-list">
+                    <p>{this.state.age}</p>
                     <p>The todo list is as follows</p>
                     <ul>
                         {todoList}

@@ -44,3 +44,12 @@ render: function(){
 
 
 Here we can pass the state of first component to the second component as a props.
+We can also change the state of a component by using the setState method.
+let self = this;
+        let ager = function(){
+            self.setState({
+                age: 23
+            })
+        };
+
+React uses virtual DOM to render the changes.
