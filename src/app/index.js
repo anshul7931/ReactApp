@@ -2,7 +2,7 @@ let React = require('react');
 let createReactClass = require('create-react-class');
 let ReactDOM = require('react-dom');
 
-//Create component using React way
+//Create A Main Component
 let TodoComponent = createReactClass({
     getInitialState:function(){
         return{
@@ -14,18 +14,12 @@ let TodoComponent = createReactClass({
         let todoList = this.state.todos;
         todoList = todoList.map(function(item,index){
             return(
-                <li>{item}</li>
+                <ToDoItem item={item} key={index}/>
             );
         });
 
         return(
             <div>
-                <h1>PROPS</h1>
-                <p>{this.props.msg}</p>
-                <p><strong>Name:{this.props.person.name}</strong></p>
-                <p><strong>Age:{this.props.person.age}</strong></p>
-                <p><strong>Place:{this.props.person.city}</strong></p>
-                <h1>STATES</h1>
                 <div id="todo-list">
                     <p>The todo list is as follows</p>
                     <ul>
@@ -37,7 +31,19 @@ let TodoComponent = createReactClass({
     }//For Rendering - returns JSX
 });
 
-var anshulObj = {name:'Anshul Goel', age:'23', city: 'Chandigarh'};
+//Create an Item Component
+// we use className because class is a reserved keyword
+let ToDoItem = createReactClass({
+    render: function(){
+        return(
+            <li>
+                <div className="todo-item"> 
+                    <span className="item-name">{this.props.item}</span>
+                </div>
+            </li>
+        );
+    }
+});
 
 //Put component into html page
-ReactDOM.render(<TodoComponent msg="this is prop" person={anshulObj}/>,document.getElementById('todo-wrapper'));
+ReactDOM.render(<TodoComponent/>,document.getElementById('todo-wrapper'));
