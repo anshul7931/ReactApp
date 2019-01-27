@@ -18,3 +18,11 @@ Run using
 
 After successful run, we will start with our first component in index.js. We return JSX in the class render method. The JSX should be embedded under one <div> tab if there are multiple tags/lines.
 
+Now props are the way to pass the data in the components(dynamic data components) that needs to be displayed in the react application. Props is properties only.
+In order to pass the props, we need to define the prop in ReactDOM rendering and from the component it will be called as {this.props.name_of_prop}
+#ReactDOM.render(<TodoComponent msg="this is prop"/>,document.getElementById('todo-wrapper'));
+#<p>{this.props.msg}</p> in component
+
+We can also pass variables as
+#var anshulObj = {name:'Anshul Goel', age:'23', city: 'Chandigarh'};
+#ReactDOM.render(<TodoComponent msg="this is prop" person={anshulObj}/>,document.getElementById('todo-wrapper'));
