@@ -4,17 +4,37 @@ let ReactDOM = require('react-dom');
 
 //Create component using React way
 let TodoComponent = createReactClass({
+    getInitialState:function(){
+        return{
+            todos:['wash up','eat the food','take a nap']
+        }
+    },//Returns object
     render:function(){
+        //Iterating through the array 
+        let todoList = this.state.todos;
+        todoList = todoList.map(function(item,index){
+            return(
+                <li>{item}</li>
+            );
+        });
+
         return(
             <div>
-                <h1>Working</h1>
+                <h1>PROPS</h1>
                 <p>{this.props.msg}</p>
                 <p><strong>Name:{this.props.person.name}</strong></p>
                 <p><strong>Age:{this.props.person.age}</strong></p>
                 <p><strong>Place:{this.props.person.city}</strong></p>
+                <h1>STATES</h1>
+                <div id="todo-list">
+                    <p>The todo list is as follows</p>
+                    <ul>
+                        {todoList}
+                    </ul>
+                </div>
             </div>
         );
-    }
+    }//For Rendering - returns JSX
 });
 
 var anshulObj = {name:'Anshul Goel', age:'23', city: 'Chandigarh'};

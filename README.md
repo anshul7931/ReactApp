@@ -26,3 +26,21 @@ In order to pass the props, we need to define the prop in ReactDOM rendering and
 We can also pass variables as
 #var anshulObj = {name:'Anshul Goel', age:'23', city: 'Chandigarh'};
 #ReactDOM.render(<TodoComponent msg="this is prop" person={anshulObj}/>,document.getElementById('todo-wrapper'));
+
+
+#STATES
+
+We dont pass states into the component tag, but we define states within the component itself. We can access the state properties in the component itself rather than passing them in the component tag. We can nest one component into another by calling its tag like
+
+let FirstComponent = createReactClass({
+render: function(){
+    return(
+        <div>
+            <SecondComponent/>
+        </div>
+    );
+}
+});
+
+
+Here we can pass the state of first component to the second component as a props.
