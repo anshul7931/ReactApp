@@ -2,6 +2,14 @@ let React = require('react');
 let createReactClass = require('create-react-class');
 let ReactDOM = require('react-dom');
 
+//CSS Require
+require('./css/index.css');
+
+
+//Module Requires
+let ToDoItem = require('./todoItem');
+let AddItem = require('./additem');
+
 //Create A Main Component
 let TodoComponent = createReactClass({
     getInitialState:function(){
@@ -14,36 +22,36 @@ let TodoComponent = createReactClass({
         let todoList = this.state.todos;
         todoList = todoList.map(function(item,index){
             return(
-                <ToDoItem item={item} key={index}/>
+                <ToDoItem item={item} key={index} onDelete={this.onDelete}/>
             );
-        });
+        }.bind(this));
 
         return(
-            <div>
                 <div id="todo-list">
-                    <p>The todo list is as follows</p>
-                    <ul>
-                        {todoList}
-                    </ul>
+                    <ul>{todoList}</ul>
+                    <AddItem onAdd={this.onAdd}/>
                 </div>
-            </div>
         );
-    }//For Rendering - returns JSX
+    },//For Rendering - returns JSX
+    onDelete: function(item){
+        let updatedTodos = this.state.todos.filter(function(value,index){
+            return item!==value;
+        });
+        this.setState({
+            todos:updatedTodos
+        });
+    },
+    onAdd: function(item){
+        let updatedTodos = this.state.todos;
+        updatedTodos.push(item);
+        this.setState({
+            todos:updatedTodos
+        });
+    }
+
 });
 
-//Create an Item Component
-// we use className because class is a reserved keyword
-let ToDoItem = createReactClass({
-    render: function(){
-        return(
-            <li>
-                <div className="todo-item"> 
-                    <span className="item-name">{this.props.item}</span>
-                </div>
-            </li>
-        );
-    }
-});
+
 
 //Put component into html page
 ReactDOM.render(<TodoComponent/>,document.getElementById('todo-wrapper'));

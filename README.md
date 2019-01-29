@@ -44,5 +44,4 @@ render: function(){
 
 
 Here we can pass the state of first component to the second component as a props.
-
-#Nesting Componenets
+We can also write event handlers in JSX by writing the function in the component
